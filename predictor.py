@@ -15,7 +15,7 @@ from sklearn.neural_network import MLPRegressor
 
 train_df = pd.read_csv('Train_data.csv')
 test_df = pd.read_csv('Test_data.csv')
-real_test_df = pd.read_csv('MarchMadness2024 - R64-Boise.csv')  #prediction on 2024 games
+real_test_df = pd.read_csv('MarchMadness2024 - R64.csv')  #prediction on 2024 games
 #test_df = test_df.loc[test_df['Year_1'] == 2017]
 
 
