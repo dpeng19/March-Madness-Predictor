@@ -19,23 +19,12 @@ real_test_df = pd.read_csv('MarchMadness2024 - R64.csv')  #prediction on 2024 ga
 #test_df = test_df.loc[test_df['Year_1'] == 2017]
 
 
-
-
  
-
 X = ['3P%D_1', 'ADJDE_1', '2P%D_1', 'SOS_2', 'EFGD%_1', 'EFGD%_2', 'Wins_1', 'TORD_1', '3P%D_2',
      'BARTHAG_2', 'TORD_2', 'ORB_1', '2P%_2', 'EFG%_1', 'SOS_1', 'DRB_1', 'Wins_2', 'TOR_2', 'Losses_2', 'TOR_1',
      'DRB_2', 'ADJOE_2', 'EFG%_2', 'Seed_2']
 Y = 'Outcome_1'
-
-X_train = train_df[X]
-X_test = test_df[X]
-Y_train = train_df[Y]
-Y_test = test_df[Y]
-X_real_test = real_test_df[X]
-Y_real_test = real_test_df[Y]
-
-
+ 
 max_accuracy = 0
 count = 0
 best_list = []
@@ -66,16 +55,19 @@ def feature_selection(index, list=[]):
     feature_selection(index + 1, list + [X[index]])
     feature_selection(index + 1, list)
 
-
+ 
 feature_selection(0, [])
 print(max_accuracy)
 print(best_list)
+
 #best list
 X = ['ADJDE_1', 'SOS_2', '3P%D_2', 'TORD_2', 'ORB_1', 'EFG%_1', 'DRB_1', 'Wins_2', 'Losses_2', 'TOR_1', 'DRB_2', 'EFG%_2']
 X_train = train_df[X]
 X_test = test_df[X]
 Y_train = train_df[Y]
 Y_test = test_df[Y]
+X_real_test = real_test_df[X]
+Y_real_test = real_test_df[Y]
 model = linear_model.LogisticRegression(max_iter=10000)
 #model = svm.SVC()
 
@@ -92,6 +84,7 @@ print(f1_score(Y_test, y_pred))
 
 #print(model.predict_proba(X_real_test)[30])
 #y_pred = model.predict_proba(X_real_test[6])
+ 
 for i in range(len(y_pred)):
     if y_pred[i][1] < 0.6:
         print(i)
